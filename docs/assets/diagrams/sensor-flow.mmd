@@ -1,0 +1,65 @@
+graph LR
+    subgraph "Physical Robot (Real or Simulated)"
+        A[Physical Environment] --> B[LiDAR Sensor]
+        A --> C[Depth Camera]
+        A --> D[IMU Sensor]
+
+        B --> E[Distance Measurements]
+        C --> F[RGB + Depth Data]
+        D --> G[Acceleration & Gyro Data]
+    end
+
+    subgraph "Gazebo Simulation Layer"
+        H[Gazebo Physics Engine] --> I[LiDAR Simulation]
+        H --> J[Camera Simulation]
+        H --> K[IMU Simulation]
+
+        I --> L[Simulated Point Cloud]
+        J --> M[Simulated RGB-D]
+        K --> N[Simulated IMU Data]
+
+        E --> I
+        F --> J
+        G --> K
+    end
+
+    subgraph "ROS 2 Communication"
+        O[ROS Sensor Drivers] --> P[LiDAR Publisher]
+        O --> Q[Camera Publisher]
+        O --> R[IMU Publisher]
+
+        L --> P
+        M --> Q
+        N --> R
+
+        P --> S[Sensor Topics]
+        Q --> S
+        R --> S
+    end
+
+    subgraph "Processing & Visualization"
+        S --> T[Perception Nodes]
+        S --> U[Unity Visualization]
+        S --> V[RViz Display]
+
+        T --> W[SLAM Algorithms]
+        T --> X[Object Detection]
+        T --> Y[State Estimation]
+
+        U --> AA[3D Point Cloud Display]
+        U --> BB[Camera Feed Overlay]
+        U --> CC[IMU Orientation Indicator]
+
+        V --> DD[LaserScan Display]
+        V --> EE[Image Display]
+        V --> FF[IMU Visualization]
+    end
+
+    style B fill:#ffcdd2
+    style C fill:#ffcdd2
+    style D fill:#ffcdd2
+    style I fill:#e3f2fd
+    style J fill:#e3f2fd
+    style K fill:#e3f2fd
+    style S fill:#f3e5f5
+    style T fill:#e8f5e8

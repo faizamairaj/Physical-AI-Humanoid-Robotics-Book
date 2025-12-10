@@ -1,0 +1,48 @@
+# Simulation Interface Contracts
+
+## Gazebo to ROS Interface
+
+### Physics State Publisher
+- **Topic**: `/gazebo/model_state`
+- **Message Type**: `gazebo_msgs/ModelState`
+- **Frequency**: 50 Hz
+- **Fields**:
+  - model_name: string
+  - pose: geometry_msgs/Pose
+  - twist: geometry_msgs/Twist
+  - reference_frame: string
+
+### Sensor Data Publishers
+- **LiDAR**: `/lidar_scan` → `sensor_msgs/LaserScan`
+- **Depth Camera**: `/depth_camera/depth/image_raw` → `sensor_msgs/Image`
+- **IMU**: `/imu/data` → `sensor_msgs/Imu`
+- **Frequency**: Variable based on sensor configuration
+
+## Unity to ROS Interface
+
+### Visualization State Subscriber
+- **Topic**: `/unity/visualization_state`
+- **Message Type**: Custom message with:
+  - robot_pose: geometry_msgs/Pose
+  - environment_state: string
+  - visualization_config: JSON string
+
+### Command Interface
+- **Topic**: `/unity/commands`
+- **Message Type**: `std_msgs/String`
+- **Commands**: "reset_simulation", "pause", "resume", "set_quality"
+
+## Digital Twin Synchronization Contract
+
+### State Synchronization
+- **Topic**: `/digital_twin/sync_state`
+- **Message Type**: Custom message with:
+  - gazebo_timestamp: time
+  - unity_timestamp: time
+  - sync_status: string
+  - transformation_matrix: float[16]
+
+### Quality of Service
+- Physics data: Reliable delivery with 10Hz minimum
+- Sensor data: Best effort with configurable frequency
+- Visualization commands: Reliable delivery with immediate processing

@@ -1,0 +1,48 @@
+graph LR
+    subgraph "Unity Digital Twin System"
+        subgraph "ROS Connection Layer"
+            A[ROS TCP Connector] --> B[Topic Subscribers]
+            A --> C[Service Clients]
+            A --> D[Action Clients]
+        end
+
+        subgraph "Data Processing"
+            B --> E[Joint State Processor]
+            B --> F[Sensor Data Processor]
+            B --> G[TF Transform Manager]
+
+            E --> H[Robot State Manager]
+            F --> I[Sensor Visualization Manager]
+            G --> J[Coordinate System Manager]
+        end
+
+        subgraph "Visualization System"
+            H --> K[Robot Model Controller]
+            I --> L[Sensor Overlay Renderer]
+            J --> M[Coordinate Converter]
+
+            K --> N[3D Robot Meshes]
+            L --> O[Sensor Data Overlays]
+            M --> P[Scene Coordinate System]
+        end
+
+        subgraph "Rendering Pipeline"
+            N --> Q[Material System]
+            O --> Q
+            P --> Q
+
+            Q --> R[Lighting System]
+            R --> S[Camera System]
+            S --> T[Final Render Output]
+        end
+    end
+
+    subgraph "External Systems"
+        U[Gazebo Simulation] --> A
+        V[RViz2/Tools] --> A
+    end
+
+    style A fill:#e3f2fd
+    style K fill:#f3e5f5
+    style Q fill:#e8f5e8
+    style T fill:#fff3e0

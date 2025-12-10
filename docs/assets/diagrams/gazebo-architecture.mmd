@@ -1,0 +1,47 @@
+graph TB
+    subgraph "Digital Twin System"
+        subgraph "Gazebo Simulation Environment"
+            A[Physics Engine<br/>ODE/Bullet/DART] --> B[Collision Detection]
+            A --> C[Gravity Simulation]
+            A --> D[Dynamics Calculation]
+
+            B --> E[Object Interactions]
+            C --> F[Force Calculations]
+            D --> G[Motion Integration]
+
+            E --> H[Robot Model]
+            F --> H
+            G --> H
+
+            H --> I[Sensor Simulation]
+            I --> J[LiDAR Sensor]
+            I --> K[Depth Camera]
+            I --> L[IMU Sensor]
+        end
+
+        subgraph "ROS 2 Communication Layer"
+            M[Topic Publishers] --> N[Sensor Data Topics]
+            O[Service Servers] --> P[Configuration Services]
+            Q[Action Servers] --> R[Complex Task Actions]
+
+            J --> M
+            K --> M
+            L --> M
+            H --> O
+        end
+
+        subgraph "Unity Visualization"
+            S[State Subscriber] --> T[Robot Visualization]
+            U[Sensor Data Subscriber] --> V[Sensor Visualization]
+
+            N --> S
+            N --> U
+            T --> W[3D Rendering]
+            V --> W
+        end
+    end
+
+    style A fill:#e1f5fe
+    style H fill:#f3e5f5
+    style I fill:#e8f5e8
+    style W fill:#fff3e0

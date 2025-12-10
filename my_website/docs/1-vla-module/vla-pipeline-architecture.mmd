@@ -1,0 +1,22 @@
+graph TD
+    A[Voice Command] --> B[Audio Input Processing]
+    B --> C[Whisper Transcription]
+    C --> D[Transcribed Text]
+    D --> E[LLM Cognitive Planning]
+    E --> F[Action Sequence]
+    F --> G[ROS2 Action Execution]
+    G --> H[Robot Action]
+
+    I[Environmental Sensors] --> J[Perception Data]
+    J --> E
+    J --> K[Semantic Map]
+    K --> E
+
+    H --> L[Execution Feedback]
+    L --> E
+    L --> M[Status Updates]
+
+    style A fill:#e1f5fe
+    style H fill:#e8f5e8
+    style E fill:#fff3e0
+    style G fill:#f3e5f5

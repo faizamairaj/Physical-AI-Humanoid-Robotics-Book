@@ -1,0 +1,81 @@
+graph TB
+    subgraph "Digital Twin Architecture"
+        subgraph "Physical Layer (Real Robot)"
+            A[Real Robot] --> B[Physical Sensors]
+            A --> C[Physical Actuators]
+            B --> D[Real Sensor Data]
+            C --> E[Real Control Commands]
+        end
+
+        subgraph "Simulation Layer (Gazebo)"
+            F[Gazebo Simulation] --> G[Physics Simulation]
+            F --> H[Sensor Simulation]
+            F --> I[Robot Dynamics]
+            G --> J[Gravity & Collisions]
+            H --> K[LiDAR Simulation]
+            H --> L[Camera Simulation]
+            H --> M[IMU Simulation]
+        end
+
+        subgraph "Visualization Layer (Unity)"
+            N[Unity Engine] --> O[3D Rendering]
+            N --> P[Robot Visualization]
+            N --> Q[Sensor Visualization]
+            O --> R[Realistic Lighting]
+            P --> S[Robot Mesh Animation]
+            Q --> T[Point Cloud Display]
+        end
+
+        subgraph "Communication Layer (ROS 2)"
+            U[ROS 2 Framework] --> V[Topic Communication]
+            U --> W[Service Communication]
+            U --> X[Action Communication]
+            V --> Y[Sensor Data Topics]
+            V --> Z[Control Command Topics]
+            W --> AA[Configuration Services]
+        end
+
+        subgraph "Integration Layer"
+            BB[State Synchronization] --> CC[TF Transform System]
+            BB --> DD[Time Synchronization]
+            BB --> EE[Data Mapping]
+            CC --> FF[Coordinate Frame Management]
+            DD --> GG[Simulation Time Management]
+            EE --> HH[Data Format Conversion]
+        end
+
+        subgraph "Application Layer"
+            II[Perception Nodes] --> JJ[SLAM]
+            II --> KK[Object Detection]
+            II --> LL[State Estimation]
+            MM[Planning Nodes] --> NN[Path Planning]
+            MM --> OO[Task Planning]
+            PP[Control Nodes] --> QQ[Motion Control]
+            PP --> RR[High-level Control]
+        end
+    end
+
+    A <--> F
+    B <--> H
+    C <--> V
+    D <--> Y
+    E <--> Z
+    F <--> N
+    G <--> BB
+    H <--> BB
+    I <--> BB
+    J <--> CC
+    K <--> Y
+    L <--> Y
+    M <--> Y
+    N <--> BB
+    BB <--> U
+    II <--> V
+    MM <--> V
+    PP <--> V
+
+    style A fill:#ffcdd2
+    style F fill:#e3f2fd
+    style N fill:#f3e5f5
+    style U fill:#e8f5e8
+    style BB fill:#fff9c4
