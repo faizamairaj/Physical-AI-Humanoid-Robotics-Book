@@ -1,5 +1,4 @@
 {
-  "rootDirectory": "my_website",
   "builds": [
     {
       "src": "package.json",
