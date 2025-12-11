@@ -1,0 +1,8 @@
+{
+  "projectId": "",
+  "orgId": "",
+  "settings": {
+    "framework": "docusaurus",
+    "rootDirectory": "my_website"
+  }
+}
