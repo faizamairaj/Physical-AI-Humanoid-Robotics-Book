@@ -1,4 +1,3 @@
 {
-  "framework": "docusaurus",
-  "rootDirectory": "my_website"
+  "framework": "docusaurus"
 }
